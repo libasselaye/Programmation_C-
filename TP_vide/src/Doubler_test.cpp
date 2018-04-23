@@ -1,16 +1,11 @@
-#include <CppUTest/CommandLineTestRunner.h>
-
 #include "Doubler.hpp"
 
-TEST_GROUP(GroupDoubler) { };
+#include <gtest/gtest.h>
 
-TEST(GroupDoubler, Doubler_test1) 
-{ 
-    CHECK_EQUAL(doubler(21), 42);
+TEST(GroupDoubler, doubler_1) {
+    ASSERT_EQ(doubler(21), 42);
 }
 
-TEST(GroupDoubler, Doubler_test2) 
-{
-    CHECK_EQUAL(doubler(0), 0);
+TEST(GroupDoubler, doubler_2) {
+    ASSERT_EQ(doubler(0), 0);
 }
-

@@ -6,7 +6,7 @@ include_directories( src )
 
 # pkgconfig 
 find_package( PkgConfig REQUIRED )
-pkg_check_modules( MYPKG REQUIRED cpputest gtkmm-2.4 )
+pkg_check_modules( MYPKG REQUIRED gtkmm-2.4 )
 include_directories( ${MYPKG_INCLUDE_DIRS} )
 
 # euler2d
@@ -21,11 +21,14 @@ add_executable( euler2d_gui.out src/euler2d_gui/euler2d_gui.cpp
     src/euler2d_gui/Dessin.cpp )
 target_link_libraries( euler2d_gui.out ${MYPKG_LIBRARIES} euler2d )
 
-# tests
-add_executable( tests.out src/tests/tests.cpp 
-    src/tests/Vecteur2d_test.cpp )
-target_link_libraries( tests.out ${MYPKG_LIBRARIES} euler2d )
-
 # install binaries
 install (TARGETS euler2d_cli.out euler2d_gui.out DESTINATION bin)
 
+# tests
+find_package (Threads)
+find_package(GTest REQUIRED)
+include_directories( ${GTEST_INCLUDE_DIRS})
+add_executable( tests.out src/tests/tests.cpp
+    src/tests/Vecteur2d_test.cpp )
+target_link_libraries( tests.out euler2d
+    ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} )

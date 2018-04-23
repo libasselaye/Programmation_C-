@@ -1,150 +1,126 @@
 /*
-#include <CppUTest/CommandLineTestRunner.h>
 
 #include "Livre.hpp"
 
+#include <gtest/gtest.h>
 #include <sstream>
 
-TEST_GROUP(GroupLivre) { };
-
-TEST(GroupLivre, Livre_constructeur_1) 
-{
-	Livre livre("titre1", "auteur1", 1337);
-	CHECK(livre.getTitre() == std::string("titre1"));
-	CHECK(livre.getAuteur() == "auteur1");
-	CHECK_EQUAL(livre.getAnnee(), 1337);
+TEST (Group_Livre, constructeur_1) {
+    Livre livre("titre1", "auteur1", 1337);
+    ASSERT_EQ(std::string("titre1"), livre.getTitre());
+    ASSERT_EQ(std::string("auteur1"), livre.getAuteur());
+    ASSERT_EQ(1337, livre.getAnnee());
 }
 
-TEST(GroupLivre, Livre_constructeur_2) 
-{
-	try 
-    {
+TEST (Group_Livre, constructeur_2) {
+    try  {
         Livre livre("titre1;", "auteur1", 1337);
-		FAIL( "exception non levee" );
-	}
-	catch (const std::string& str) 
-    {
-		CHECK_EQUAL(str, "erreur : titre non valide (';' non autorisé)");
-	}
+        FAIL() << "exception non levée";
+    }
+    catch (const std::string& str)  {
+        ASSERT_EQ(std::string("erreur : titre non valide (';' non autorisé)"), str);
+    }
 }
 
-TEST(GroupLivre, Livre_constructeur_3) 
-{
-	try 
-    {
+TEST (Group_Livre, constructeur_3) {
+    EXPECT_THROW(Livre("titre1", "auteur1;", 1337), std::string);
+    try  {
         Livre livre("titre1", "auteur1;", 1337);
-		FAIL( "exception non levee" );
-	}
-	catch (const std::string& str) 
-    {
-		CHECK_EQUAL(str, "erreur : auteur non valide (';' non autorisé)");
-	}
+        FAIL() << "exception non levée";
+    }
+    catch (const std::string& str) {
+        ASSERT_EQ(std::string("erreur : auteur non valide (';' non autorisé)"), str);
+    }
 }
 
-TEST(GroupLivre, Livre_constructeur_4) 
-{
-	try 
-    {
+TEST (Group_Livre, constructeur_4) {
+    try  {
         Livre livre("titre1", "auteur1\n", 1337);
-		FAIL( "exception non levee" );
-	}
-	catch (const std::string& str) 
-    {
-		CHECK_EQUAL(str, "erreur : auteur non valide ('\n' non autorisé)");
-	}
+        FAIL() << "exception non levée";
+    }
+    catch (const std::string& str)  {
+        ASSERT_EQ(std::string("erreur : auteur non valide ('\n' non autorisé)"), str);
+    }
 }
 
-TEST(GroupLivre, Livre_inferieur_pp) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a0",1), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a0",0), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a0",2), false);
+TEST (Group_Livre, inferieur_pp) {
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t0","a0",1));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t0","a0",0));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t0","a0",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_pz) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a1",1), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a1",0), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a1",2), false);
+TEST (Group_Livre, inferieur_pz) {
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t0","a1",1));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t0","a1",0));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t0","a1",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_pm) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a2",1), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a2",0), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a2",2), true);
+TEST (Group_Livre, inferieur_pm) {
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t0","a2",1));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t0","a2",0));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t0","a2",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_zp) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a0",1), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a0",0), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a0",2), false);
+TEST (Group_Livre, inferieur_zp) {
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t1","a0",1));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t1","a0",0));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t1","a0",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_zz) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a1",1), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a1",0), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a1",2), false);
+TEST (Group_Livre, inferieur_zz) {
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t1","a1",1));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t1","a1",0));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t1","a1",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_zm) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a2",1), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a2",0), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t1","a2",2), true);
+TEST (Group_Livre, inferieur_zm) {
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t1","a2",1));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t1","a2",0));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t1","a2",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_mp) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a0",1), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a0",0), false);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a0",2), false);
+TEST (Group_Livre, inferieur_mp) {
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t2","a0",1));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t2","a0",0));
+    ASSERT_EQ(false, Livre("t1","a1",1)<Livre("t2","a0",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_mz) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a1",1), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a1",0), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a1",2), true);
+TEST (Group_Livre, inferieur_mz) {
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t2","a1",1));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t2","a1",0));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t2","a1",2));
 }
 
-TEST(GroupLivre, Livre_inferieur_mm) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a2",1), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a2",0), true);
-	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t2","a2",2), true);
+TEST (Group_Livre, inferieur_mm) {
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t2","a2",1));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t2","a2",0));
+    ASSERT_EQ(true, Livre("t1","a1",1)<Livre("t2","a2",2));
 }
 
-TEST(GroupLivre, Livre_egalite_1) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)==Livre("t1","a1",1), true);
+TEST (Group_Livre, egalite_1) {
+    ASSERT_EQ(true, Livre("t1","a1",1)==Livre("t1","a1",1));
 }
 
-TEST(GroupLivre, Livre_egalite_2) 
-{
-	CHECK_EQUAL(Livre("t1","a1",1)==Livre("t2","a1",1), false);
-	CHECK_EQUAL(Livre("t1","a1",1)==Livre("t1","a2",1), false);
-	CHECK_EQUAL(Livre("t1","a1",1)==Livre("t1","a1",2), false);
+TEST (Group_Livre, egalite_2) {
+    ASSERT_EQ(false, Livre("t1","a1",1)==Livre("t2","a1",1));
+    ASSERT_EQ(false, Livre("t1","a1",1)==Livre("t1","a2",1));
+    ASSERT_EQ(false, Livre("t1","a1",1)==Livre("t1","a1",2));
 }
 
-TEST(GroupLivre, Livre_entree_1) 
-{
-	Livre livre;
-	std::stringstream s("titre;auteur;42");
-	s >> livre;
-	CHECK(livre.getTitre() == "titre");
-	CHECK(livre.getAuteur() == "auteur");
-	CHECK_EQUAL(livre.getAnnee(), 42);
+TEST (Group_Livre, entree_1) {
+    Livre livre;
+    std::stringstream s("titre;auteur;42");
+    s >> livre;
+    ASSERT_EQ(std::string("titre"), livre.getTitre());
+    ASSERT_EQ(std::string("auteur"), livre.getAuteur());
+    ASSERT_EQ(42, livre.getAnnee());
 }
 
-TEST(GroupLivre, Livre_sortie_1) 
-{
-	Livre livre("titre", "auteur", 42);
-	std::stringstream s;
-	s << livre;
-	CHECK_EQUAL(std::string("titre;auteur;42"), s.str());
+TEST (Group_Livre, sortie_1) {
+    Livre livre("titre", "auteur", 42);
+    std::stringstream s;
+    s << livre;
+    ASSERT_EQ(std::string("titre;auteur;42"), s.str());
 }
 
 */

@@ -11,15 +11,16 @@ stdenv.mkDerivation {
     cpputest
     eigen
     gdb
-    gede
     glog
     gnome2.gtkmm
     gnome3.gtkmm
-    gnome3.nemiver
     gnuplot
+    gtest
     imagemagick
     pkgconfig
     poco
+    qtcreator
+    sqlite
     sqlitebrowser
     valgrind
   ];

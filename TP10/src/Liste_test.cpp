@@ -1,8 +1,8 @@
-#include <CppUTest/CommandLineTestRunner.h>
-
 #include "Liste.hpp"
 
 #include <sstream>
+
+#include <CppUTest/CommandLineTestRunner.h>
 
 TEST_GROUP(GroupListe) { };
 

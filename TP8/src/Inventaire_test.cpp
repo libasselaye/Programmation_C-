@@ -1,8 +1,8 @@
-#include <CppUTest/CommandLineTestRunner.h>
-
 #include "Inventaire.hpp"
 
 #include <sstream>
+
+#include <CppUTest/CommandLineTestRunner.h>
 
 TEST_GROUP(GroupInventaire) { };
 

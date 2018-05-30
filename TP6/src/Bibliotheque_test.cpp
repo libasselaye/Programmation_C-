@@ -1,9 +1,9 @@
 /*
-#include <CppUTest/CommandLineTestRunner.h>
-
 #include "Bibliotheque.hpp"
 
 #include <sstream>
+
+#include <CppUTest/CommandLineTestRunner.h>
 
 TEST_GROUP(GroupBibliotheque) { };
 

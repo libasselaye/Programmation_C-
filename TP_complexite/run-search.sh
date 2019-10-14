@@ -1,10 +1,10 @@
 #!/bin/sh
 
 echo "*** search (naive) ***"
-./search.out 200 2000 200 naive 0 1000000 | tee cpp-tp-complexite-search-naive.csv 
+./search.out 10 300 20 naive 0 2000000 | tee cpp-tp-complexite-search-naive.csv
 
 echo "*** search (optim) ***"
-./search.out 200 2000 200 optim 0 1000000 | tee cpp-tp-complexite-search-optim.csv 
+./search.out 10 300 20 optim 0 2000000 | tee cpp-tp-complexite-search-optim.csv
 
 paste cpp-tp-complexite-search-naive.csv cpp-tp-complexite-search-optim.csv > cpp-tp-complexite-search.csv 
 

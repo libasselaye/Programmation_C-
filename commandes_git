@@ -1,0 +1,7 @@
+git add README.md
+git commit
+git push
+git status
+
+// pour que gitlab teste la compilation à chaque fois que je fais un push
+https://gitlab.com/juliendehos/L3_GL_etudiant/-/blob/master/TP_workflow/.gitlab-ci.yml

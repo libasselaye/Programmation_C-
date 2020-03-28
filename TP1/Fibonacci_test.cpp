@@ -6,7 +6,7 @@ TEST_GROUP(GroupFibonacci) { };
 
 TEST(GroupFibonacci, test_fibonacciRecursif) {  // premier test
        int result = fibonacciRecursif(5);
-       CHECK_EQUAL(5, result);   
+       CHECK_EQUAL(5, result); 
 }
 
 

@@ -3,8 +3,8 @@
 #ifndef FIBONACCI_HPP_
 #define FIBONACCI_HPP_
 
-float fibonacciRecursif(float x);
+int fibonacciRecursif(int x);
 
-float fibonacciIteratif(float x);
+int fibonacciIteratif(int x);
 
 #endif

@@ -11,9 +11,10 @@ include_directories( ${PKG_GTKMM_INCLUDE_DIRS} )
 
 
 # programme principal
-add_executable( main_doubler21.out src/main_doubler21.cpp 
-    src/Doubler.cpp src/FigureGeometrique.cpp src/Ligne.cpp src/PolygoneRegulier.cpp )
-target_link_libraries( main_doubler21.out ${PKG_GTKMM_LIBRARIES})
+add_executable( main_tp5.out src/main_tp5.cpp 
+    src/Doubler.cpp src/FigureGeometrique.cpp src/Ligne.cpp src/PolygoneRegulier.cpp src/ViewerFigures.cpp
+    src/ZoneDessin.cpp )
+target_link_libraries( main_tp5.out ${PKG_GTKMM_LIBRARIES})
 
 # programme de test
 add_executable( main_test.out src/main_test.cpp

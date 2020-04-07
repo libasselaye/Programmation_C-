@@ -3,6 +3,7 @@
 #include "Point.hpp"
 #include "Couleur.hpp"
 #include "FigureGeometrique.hpp"
+#include <gtkmm.h>
 
 
 class PolygoneRegulier : public FigureGeometrique
@@ -14,7 +15,7 @@ private:
 public:
     PolygoneRegulier(const Couleur & couleur , const Point & centre ,
                      int rayon , int nbCotes);
-    void afficher() const;
+    void afficher(const Cairo::RefPtr<Cairo::Context> & context) const;
     int getNbPoints() const;
     const Point & getPoint(int indice) const;
    // ~PolygoneRegulier();

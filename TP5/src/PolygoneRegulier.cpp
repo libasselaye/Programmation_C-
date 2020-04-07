@@ -20,13 +20,18 @@ PolygoneRegulier::PolygoneRegulier(const Couleur & couleur , const Point & centr
     delete [] _points;
 }*/
 
-void PolygoneRegulier::afficher() const{
+void PolygoneRegulier::afficher(const Cairo::RefPtr<Cairo::Context> & context) const{
       const Couleur & c = getCouleur();
-      std::cout << "PolygoneRegulier " << c._r <<"_"<< c._g <<"_"<< c._b <<" ";
+      context->set_source_rgb(c._r,c._g,c._b);
+
+      const Point & p1 = _points[_nbPoints-1];
+      context->move_to(p1._x,p1._y);
 
       for (int i=0 ;i <_nbPoints;++i) {
-          std::cout<<  _points[i]._x  << "_" <<  _points[i]._y <<" ";
+          const Point & p = _points[i];
+          context->line_to(p._x, p._y);
       }
+      context->stroke();
 }
 
 int PolygoneRegulier::getNbPoints() const{

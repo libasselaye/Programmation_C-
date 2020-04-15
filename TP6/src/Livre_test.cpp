@@ -1,8 +1,5 @@
-/*
 #include "Livre.hpp"
-
 #include <sstream>
-
 #include <CppUTest/CommandLineTestRunner.h>
 
 TEST_GROUP(GroupLivre) { };
@@ -11,10 +8,10 @@ TEST(GroupLivre, Livre_constructeur_1)
 {
 	Livre livre("titre1", "auteur1", 1337);
 	CHECK(livre.getTitre() == std::string("titre1"));
-	CHECK(livre.getAuteur() == "auteur1");
-	CHECK_EQUAL(livre.getAnnee(), 1337);
+    CHECK(livre.getAuteur() == "auteur1");
+    CHECK_EQUAL(livre.getAnnee(), 1337);
 }
-
+/*
 TEST(GroupLivre, Livre_constructeur_2) 
 {
 	try 
@@ -53,7 +50,7 @@ TEST(GroupLivre, Livre_constructeur_4)
 		CHECK_EQUAL(str, "erreur : auteur non valide ('\n' non autorisé)");
 	}
 }
-
+*/
 TEST(GroupLivre, Livre_inferieur_pp) 
 {
 	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a0",1), false);
@@ -128,7 +125,7 @@ TEST(GroupLivre, Livre_egalite_2)
 	CHECK_EQUAL(Livre("t1","a1",1)==Livre("t1","a2",1), false);
 	CHECK_EQUAL(Livre("t1","a1",1)==Livre("t1","a1",2), false);
 }
-
+/*
 TEST(GroupLivre, Livre_entree_1) 
 {
 	Livre livre;

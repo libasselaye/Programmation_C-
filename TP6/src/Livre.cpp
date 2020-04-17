@@ -7,15 +7,14 @@ Livre::Livre(){
 Livre::Livre(const std::string & titre , const std::string & auteur , int annee):
 _titre(titre) , _auteur(auteur) , _annee(annee) {
 
-    if (_titre.find(";") !=std::string::npos)
-        throw ("titre non valide (';' non autorisé)");
+    if (_titre.find(";") != std::string::npos) throw "erreur : titre non valide (';' non autorisé)";
+
     else
-        if (_titre.find("\n") !=std::string::npos)
-           throw ("titre non valide ('\n' non autorisé)");
-    else if (_auteur.find(";") !=std::string::npos)
-                throw ("auteur non valide (';' non autorisé)");
-        else if (_auteur.find("\n") !=std::string::npos)
-            throw ("auteur non valide ('\n' non autorisé)");
+         if (_titre.find("\n") !=std::string::npos) throw ("erreur : titre non valide ('\n' non autorisé)");
+      else
+           if (_auteur.find(";") !=std::string::npos) throw ("erreur : auteur non valide (';' non autorisé)");
+        else
+             if (_auteur.find("\n") !=std::string::npos) throw ("erreur : auteur non valide ('\n' non autorisé)");
 
 }
 
@@ -37,6 +36,10 @@ bool Livre::operator<(const Livre& l2) const{
     else return _auteur == l2.getAuteur() && _titre < l2.getTitre();
 }
 
-bool operator== (const Livre&l1 ,const Livre&l2) {
+bool operator==(const Livre&l1 ,const Livre&l2) {
     return l1.getAuteur()==l2.getAuteur() && l1.getTitre()==l2.getTitre()&& l1.getAnnee()==l2.getAnnee();
+}
+
+void operator<<(std::ostream & os, const Livre & l) {
+    os << l.getTitre() << ";" << l.getAuteur() << ";" << l.getAnnee();
 }

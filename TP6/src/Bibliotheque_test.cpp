@@ -1,4 +1,4 @@
-/*
+
 #include "Bibliotheque.hpp"
 
 #include <sstream>
@@ -49,14 +49,14 @@ TEST(GroupBibliotheque, Bibliotheque_fichier_1 )
     b1.push_back(Livre("t0","a0",42));
     b1.push_back(Livre("t1","a1",13));
     b1.push_back(Livre("t2","a2",37));
-    b1.ecrireFichier("bibliotheque_fichier_tmp.txt");
-    Bibliotheque b2;
+  b1.ecrireFichier("bibliotheque_fichier_tmp.txt");
+ /*   Bibliotheque b2;
     b2.lireFichier("bibliotheque_fichier_tmp.txt");
     CHECK(b2[0] == Livre("t0","a0",42));
     CHECK(b2[1] == Livre("t1","a1",13));
-    CHECK(b2[2] == Livre("t2","a2",37));
+    CHECK(b2[2] == Livre("t2","a2",37));*/
 }
-
+/*
 TEST(GroupBibliotheque, Bibliotheque_charger_1 ) 
 {
     Bibliotheque b;

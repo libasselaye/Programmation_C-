@@ -1,5 +1,6 @@
 #include "Livre.hpp"
 #include <sstream>
+#include <iostream>
 #include <CppUTest/CommandLineTestRunner.h>
 
 TEST_GROUP(GroupLivre) { };
@@ -19,7 +20,7 @@ TEST(GroupLivre, Livre_constructeur_2)
         Livre livre("titre1;", "auteur1", 1337);
 		FAIL( "exception non levee" );
 	}
-	catch (const std::string& str) 
+    catch (const std::string& str)
     {
 		CHECK_EQUAL(str, "erreur : titre non valide (';' non autorisé)");
 	}
@@ -51,6 +52,7 @@ TEST(GroupLivre, Livre_constructeur_4)
 	}
 }
 */
+
 TEST(GroupLivre, Livre_inferieur_pp) 
 {
 	CHECK_EQUAL(Livre("t1","a1",1)<Livre("t0","a0",1), false);
@@ -135,7 +137,7 @@ TEST(GroupLivre, Livre_entree_1)
 	CHECK(livre.getAuteur() == "auteur");
 	CHECK_EQUAL(livre.getAnnee(), 42);
 }
-
+*/
 TEST(GroupLivre, Livre_sortie_1) 
 {
 	Livre livre("titre", "auteur", 42);
@@ -144,5 +146,5 @@ TEST(GroupLivre, Livre_sortie_1)
 	CHECK_EQUAL(std::string("titre;auteur;42"), s.str());
 }
 
-*/
+
 

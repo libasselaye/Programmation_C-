@@ -1,6 +1,7 @@
 #ifndef LIVRE_HPP_
 #define LIVRE_HPP_
 #include <string>
+#include <iostream>
 
 class Livre {
 private:
@@ -14,7 +15,9 @@ public:
   const std::string & getTitre() const ;
   const std::string & getAuteur() const ;
   int getAnnee() const;
-
+  bool operator<(const Livre& l2) const ;
 };
+bool operator==(const Livre&l1 ,const Livre&l2);
+void operator<<(std::ostream & os, const Livre & l);
 
 #endif

@@ -15,7 +15,7 @@ private:
 public:
     PolygoneRegulier(const Couleur & couleur , const Point & centre ,
                      int rayon , int nbCotes);
-    void afficher(const Cairo::RefPtr<Cairo::Context> & context) const;
+    void afficher(const Cairo::RefPtr<Cairo::Context> & context) const ;
     int getNbPoints() const;
     const Point & getPoint(int indice) const;
    // ~PolygoneRegulier();

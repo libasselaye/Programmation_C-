@@ -1,6 +1,8 @@
 #include "PolygoneRegulier.hpp"
 #include <cmath>
 #include <iostream>
+#include <gtkmm.h>
+#include <cairomm/context.h>
 
 PolygoneRegulier::PolygoneRegulier(const Couleur & couleur , const Point & centre ,
                                    int rayon , int nbCotes):

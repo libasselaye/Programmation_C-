@@ -4,12 +4,12 @@
 #include <gtkmm.h>
 
 ZoneDessin::ZoneDessin() {
-
-  // _figures.push_back( new Ligne ( {1,0,0} , {10,10} , {100,200} ) );
+   PolygoneRegulier poly ({0,1,0},{100,200},50,5);
+   //_figures.push_back( new Ligne ( {1,0,0} , {10,10} , {100,200} ) );
   // _figures.push_back( new Ligne ( {1,0,0} , {60,10} , {100,200} ) );
   // _figures.push_back( new Ligne ( {1,0,0} , {10,470} , {100,200} ) );
   // _figures.push_back( new Ligne ( {1,0,0} , {0,0} , {100,200} ) );
-      _figures.push_back( new PolygoneRegulier( {0,1,0} , {100,200} , 50 , 5) );
+      _figures.push_back( new PolygoneRegulier(poly) );
 
 }
 
@@ -20,16 +20,15 @@ for (FigureGeometrique * ptrfigure : _figures)
 
 }
 
-bool ZoneDessin::on_draw(
-    const Cairo::RefPtr<Cairo::Context> & context) {
+bool ZoneDessin::on_draw (const Cairo::RefPtr<Cairo::Context> & context) {
 
     // règle le tracé
     //context->set_source_rgb(1.0, 0.0, 0.0);
     context->set_line_width(2.0);
 
     // dessine une diagonale
-    /*
-    auto window = get_window();
+
+    /*auto window = get_window();
     context->move_to(0, 0);
     context->line_to(window->get_width(),
                      window->get_height());

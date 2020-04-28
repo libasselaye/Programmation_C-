@@ -14,7 +14,7 @@ public:
    ZoneDessin();
    ~ZoneDessin();
   // bool on_draw(GdkEventExpose* event);
-   bool on_draw( const Cairo::RefPtr<Cairo::Context> &) override;
+   bool on_draw( const Cairo::RefPtr<Cairo::Context> & context) override;
    bool gererClic(GdkEventButton* event);
 };
 

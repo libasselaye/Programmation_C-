@@ -1,7 +1,8 @@
 #ifndef FIGUREGEOMETRIQUE_HPP_
 #define FIGUREGEOMETRIQUE_HPP_
 #include "Couleur.hpp"
-#include <gtkmm.h>
+#include <gtkmm/drawingarea.h>
+
 
 class FigureGeometrique{
 protected:

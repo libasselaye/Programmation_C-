@@ -4,8 +4,10 @@
 #include "Inventaire.hpp"
 #include "Vue.hpp"
 
+
 #include <memory>
 #include <vector>
+#include <string>
 
 // Controleur : fait le lien entre la Vue et le Modèle. Point d'entrée de
 // l'application. Utilisation : construire un Controleur puis run().
@@ -19,6 +21,10 @@ class Controleur {
 
         // Lance l'application.
         void run();
+        //la on met pas de reference car on evite qu'il disparait
+        //quand on termine avec la fonction
+        std::string getTexte() const;
+       void chargerInventaire(const std::string & nomFichier);
 };
 
 #endif

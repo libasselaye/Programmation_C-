@@ -4,7 +4,7 @@
 #include <gtkmm.h>
 
 ZoneDessin::ZoneDessin() {
-   PolygoneRegulier poly ({0,1,0},{100,200},50,5);
+   PolygoneRegulier poly ({0,1,0},{150,200},50,5);
    //_figures.push_back( new Ligne ( {1,0,0} , {10,10} , {100,200} ) );
   // _figures.push_back( new Ligne ( {1,0,0} , {60,10} , {100,200} ) );
   // _figures.push_back( new Ligne ( {1,0,0} , {10,470} , {100,200} ) );

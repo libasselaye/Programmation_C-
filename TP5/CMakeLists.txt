@@ -26,3 +26,4 @@ add_executable( main_test.out src/main_test.cpp
     src/Doubler_test.cpp
     src/PolygoneRegulier_test.cpp )
 target_link_libraries( main_test.out ${PKG_CPPUTEST_LIBRARIES} )
+target_link_libraries( main_test.out ${PKG_GTKMM_LIBRARIES})

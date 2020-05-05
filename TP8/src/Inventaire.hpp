@@ -10,5 +10,6 @@
 struct Inventaire {
     std::vector<Bouteille> _bouteilles;
 };
+std::ostream & operator<<(std::ostream & os, const Inventaire & in);
 
 #endif

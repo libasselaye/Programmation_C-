@@ -26,13 +26,22 @@ Vue(controleur), _kit(argc, argv) {
 	_scrolledWindow.add(_textView);
 	_scrolledWindow.set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
 	_box.pack_start(_scrolledWindow);
+    _button.set_label("Ouvrir nday fichier ...");
+    _button.signal_clicked().connect(
+           sigc::mem_fun(*this, &VueGraphique::ouvrirFichier));
+
+
+    //_button.("ouvrir fichier");
+    _box.pack_start(_button,Gtk::PACK_SHRINK);
 
 	_window.add(_box);
 	_window.show_all();
 }
 
 void VueGraphique::actualiser() {
-	std::string texte = "bloublou";    // TODO recuperer le vrai texte a afficher
+    //std::string texte = "bloublou";
+    // TODO recuperer le vrai texte a afficher
+    std::string texte = _controleur.getTexte();
 	_textView.get_buffer()->set_text(texte.c_str());
 }
 
@@ -47,7 +56,20 @@ void VueGraphique::ouvrirFichier() {
 	int ret = dialog.run();
 	if (ret == Gtk::RESPONSE_OK) {
 		std::string nomFichier = dialog.get_filename();
+        std::cout <<"TODO : " << nomFichier<<std::endl;
+        _controleur.chargerInventaire(nomFichier);
 		// TODO charger les donnees du fichier dans l'inventaire
 	}
 }
 
+VueConsole::VueConsole(Controleur& controleur) :
+    Vue(controleur) {}
+
+void VueConsole::actualiser() {
+    //std::string texte = _controleur.getTexte();
+    std::cout<< _controleur.getTexte() << std::endl;
+}
+
+void VueConsole::run() {
+
+}

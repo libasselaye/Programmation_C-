@@ -8,10 +8,13 @@ private :
     int * _pixels;
 public:
     Image(int largeur,int hargeur);
+    ~Image();
     int getLargeur() const;
     int getHauteur() const;
     int getPixel(int i ,int j) const;
     void setPixel(int i ,int j, int couleur) const;
+    int pixel(int i , int j) const;
+    int & pixel(int i , int j);
 };
 
 #endif

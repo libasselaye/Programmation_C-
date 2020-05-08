@@ -4,8 +4,8 @@ Image::Image(int largeur,int hauteur):
     _largeur(largeur), _hauteur(hauteur)
 {
     _pixels = new int[_largeur * _hauteur];
-    for (int k=0;k<_largeur * _hauteur;k++)
-        _pixels[k]=0;
+    /*for (int k=0;k<_largeur * _hauteur;k++)
+        _pixels[k] = 0;*/
 }
 
 Image::~Image(){

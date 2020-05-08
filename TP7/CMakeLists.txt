@@ -8,13 +8,11 @@ include_directories( ${PKG_CPPUTEST_INCLUDE_DIRS} )
 
 # programme principal
 add_executable( main_doubler21.out src/main_doubler21.cpp 
-    src/Doubler.cpp src/Image.cpp )
+     src/Image.cpp )
 target_link_libraries( main_doubler21.out )
 
 # programme de test
 add_executable( main_test.out src/main_test.cpp
-    src/Doubler.cpp 
-    src/Doubler_test.cpp
     src/Image.cpp
     src/Image_test.cpp )
 target_link_libraries( main_test.out ${PKG_CPPUTEST_LIBRARIES} )

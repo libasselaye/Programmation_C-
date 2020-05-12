@@ -13,7 +13,7 @@ Controleur::Controleur(int argc,char ** argv) { //,
     //std::cout<< "Maredsous;2013-08-18;0.75" <<std::endl;
     for (auto & v : _vues)
       v->actualiser();*/
-    //chargerInventaire(" ");
+    //chargerInventaire("mesbouteilles.txt");
 }
 
 void Controleur::run() {
@@ -23,13 +23,22 @@ void Controleur::run() {
 std::string Controleur::getTexte() const{
 	std::ostringstream oss;
     oss << _inventaire;
+
+    oss << std::endl;
+    Inventaire i2 = _inventaire;
+    i2.trier();
+    oss <<i2;
     return oss.str();
 }
 
-void Controleur::chargerInventaire(const std::string & /*nomFichier*/) {
-    _inventaire._bouteilles.push_back( {"Maredsous","2013-08-18", 0.75} );
-    //on doit ici faire affichage console
-    //std::cout<< "Maredsous;2013-08-18;0.75" <<std::endl;
+void Controleur::chargerInventaire(const std::string & nomFichier) {
+   std::ifstream ifs(nomFichier);
+   if(not ifs){
+       std::cerr << "echec a louverture du fichier \n";
+   }
+   _inventaire._bouteilles.clear();
+   ifs >> _inventaire;
+
     for (auto & v : _vues)
       v->actualiser();
 
